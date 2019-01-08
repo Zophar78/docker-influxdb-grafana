@@ -20,6 +20,16 @@ telegraf:
   volumes:
     - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
 
+chronograf:
+  image: chronograf:latest
+  container_name: chronograf
+  volumes:
+    - /srv/docker/chronograf/data:/var/lib/chronograf
+  ports:
+    - "8888:8888"
+  links:
+    - influxdb
+
 grafana:
   image: grafana/grafana:latest
   container_name: grafana
